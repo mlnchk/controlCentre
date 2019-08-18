@@ -3,7 +3,7 @@ import { View, Image } from "react-native";
 
 import Panel from "../Panel";
 
-import { useStateValue } from "../../magic/hooks";
+import { useStateValue } from "../../magic/state";
 
 const LockOrientationPanel = () => {
   const [iconValues, dispatch] = useStateValue();

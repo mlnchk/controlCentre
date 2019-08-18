@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
-import { useStateValue } from "../magic/hooks";
+import { useStateValue } from "../magic/state";
 
 const iconSize = 54;
 

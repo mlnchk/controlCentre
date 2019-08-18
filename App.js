@@ -10,26 +10,11 @@ import {
 import Row from "./src/components/Row";
 import Separator from "./src/components/Separator";
 
-import { StateProvider } from "./src/magic/hooks";
-
-const initialState = {};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "toggleIcon":
-      return {
-        ...state,
-        [action.slug]: !state[action.slug]
-      };
-
-    default:
-      return state;
-  }
-};
+import { StateProvider } from "./src/magic/state";
 
 export default function App() {
   return (
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <StateProvider>
       <ImageBackground
         style={styles.container}
         source={require("./src/assets/background.png")}

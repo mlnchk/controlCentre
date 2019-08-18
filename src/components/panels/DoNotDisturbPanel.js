@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Image } from "react-native";
 
-import { useStateValue } from "../../magic/hooks";
+import { useStateValue } from "../../magic/state";
 
 import Panel from "../Panel";
 import Modal from "../Modal";

@@ -1,23 +1,8 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback
-} from "react-native";
+import { StyleSheet, Image, TouchableWithoutFeedback } from "react-native";
 import RNModal from "react-native-modal";
 
 import Panel from "./Panel";
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 27,
-    flexDirection: "row"
-  }
-});
 
 const Modal = ({ children, onBackdropPress, ...rest }) => (
   <RNModal
@@ -39,5 +24,15 @@ const Modal = ({ children, onBackdropPress, ...rest }) => (
     <Panel isFlexible>{children}</Panel>
   </RNModal>
 );
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 27,
+    flexDirection: "row"
+  }
+});
 
 export default Modal;

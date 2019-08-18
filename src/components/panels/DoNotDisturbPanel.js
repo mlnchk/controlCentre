@@ -1,21 +1,40 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Image, Text, StyleSheet } from "react-native";
+import { View, Image } from "react-native";
+
+import { useStateValue } from "../../magic/hooks";
 
 import Panel from "../Panel";
 import Modal from "../Modal";
+import ListPanelView from "../ListPanelView";
 
-import { useStateValue } from "../../magic/hooks";
-import Separator from "../Separator";
+const listItems = [
+  {
+    title: "For 1 hour",
+    onPress: () => {}
+  },
+  {
+    title: "Until this evening",
+    onPress: () => {}
+  },
+  {
+    title: "Until I leave this location",
+    onPress: () => {}
+  }
+];
 
 const DoNotDisturbPanel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [iconValues, dispatch] = useStateValue();
-  const changeIconState = slug => () => dispatch({ type: "toggleIcon", slug });
+  const changeIconState = () =>
+    dispatch({
+      type: "toggleIcon",
+      slug: "doNotDisturb"
+    });
   const isIconActive = iconValues["doNotDisturb"];
   return (
     <>
       <Panel
-        onPress={changeIconState("doNotDisturb")}
+        onPress={changeIconState}
         isSelected={isIconActive}
         onLongPress={() => setIsModalVisible(true)}
       >
@@ -35,48 +54,15 @@ const DoNotDisturbPanel = () => {
         isVisible={isModalVisible}
         onBackdropPress={() => setIsModalVisible(false)}
       >
-        <View style={styles.header} alignItems="center">
-          <Separator height={15} />
-          <Image source={require("../../assets/icons/doNotDisturb.png")} />
-          <Separator height={10} />
-
-          <Text style={styles.text}>Do Not Disturb</Text>
-          <Separator height={15} />
-        </View>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>For 1 hour</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>Until this evening</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>Until i leave this location</Text>
-        </TouchableOpacity>
-        <View alignItems="center">
-          <Separator height={15} />
-          <Text style={styles.text}>Schedule</Text>
-          <Separator height={15} />
-        </View>
+        <ListPanelView
+          icon={require("../../assets/icons/doNotDisturb.png")}
+          headerText="Do Not Disturb"
+          footerText="Schedule"
+          items={listItems}
+        />
       </Modal>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  text: {
-    color: "white",
-    fontSize: 14
-  },
-  header: {
-    borderBottomColor: "rgba(255, 255, 255, 0.3)",
-    borderBottomWidth: 0.5
-  },
-  listItem: {
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
-    borderBottomColor: "rgba(255, 255, 255, 0.3)",
-    borderBottomWidth: 0.5,
-    padding: 15
-  }
-});
 
 export default DoNotDisturbPanel;

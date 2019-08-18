@@ -4,6 +4,30 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Panel from "../Panel";
 import Modal from "../Modal";
 import Separator from "../Separator";
+import ListPanelView from "../ListPanelView";
+
+const listItems = [
+  {
+    title: "Looking for Apple TV...",
+    onPress: () => {}
+  },
+  {
+    title: "",
+    onPress: () => {}
+  },
+  {
+    title: "",
+    onPress: () => {}
+  },
+  {
+    title: "",
+    onPress: () => {}
+  },
+  {
+    title: "",
+    onPress: () => {}
+  }
+];
 
 const ScreenMirroringPanel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -24,34 +48,12 @@ const ScreenMirroringPanel = () => {
         isVisible={isModalVisible}
         onBackdropPress={() => setIsModalVisible(false)}
       >
-        <View style={styles.header} alignItems="center">
-          <Separator height={15} />
-          <Image source={require("../../assets/icons/screenMirroring.png")} />
-          <Separator height={10} />
-
-          <Text style={styles.text}>Screen Mirroring</Text>
-          <Separator height={15} />
-        </View>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>Looking for Apple TV...</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text} />
-        </TouchableOpacity>
-        <View alignItems="center">
-          <Separator height={15} />
-          <Text style={styles.text} />
-          <Separator height={15} />
-        </View>
+        <ListPanelView
+          icon={require("../../assets/icons/screenMirroring.png")}
+          headerText="Screen Mirroring"
+          footerText=""
+          items={listItems}
+        />
       </Modal>
     </>
   );

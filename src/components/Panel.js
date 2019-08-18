@@ -3,20 +3,7 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 
 import { useAnimation } from "../magic/hooks";
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    borderRadius: 18,
-    flex: 1,
-    aspectRatio: 1,
-    justifyContent: "space-evenly"
-  },
-  selected: {
-    backgroundColor: "#ffffff"
-  }
-});
-
-const Panel = props => {
+const Panel = ({ isSelected, isFlexible, children, ...rest }) => {
   const [isScaled, setIsScaled] = useState(false);
   const scale = useAnimation({
     initialValue: isScaled ? 1.1 : 1,
@@ -29,21 +16,32 @@ const Panel = props => {
       activeOpacity={1}
       onPressIn={() => setIsScaled(true)}
       onPressOut={() => setIsScaled(false)}
-      {...props}
+      {...rest}
       style={[
         styles.root,
-        props.isSelected && styles.selected,
-        props.isFlexible && { aspectRatio: null },
+        isSelected && styles.selected,
+        isFlexible && { aspectRatio: null },
         {
           transform: [{ scaleY: scale }, { scaleX: scale }]
         }
       ]}
     >
-      {typeof props.children === "function"
-        ? props.children(props.isSelected)
-        : props.children}
+      {typeof children === "function" ? children(isSelected) : children}
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    borderRadius: 18,
+    aspectRatio: 1,
+    flex: 1,
+    justifyContent: "space-evenly"
+  },
+  selected: {
+    backgroundColor: "#ffffff"
+  }
+});
 
 export default Panel;

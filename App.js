@@ -6,18 +6,11 @@ import Icon from "./src/components/Icon";
 
 import ConnectionsPanel from "./src/components/panels/ConnectionsPanel";
 import DoNotDisturbPanel from "./src/components/panels/DoNotDisturbPanel";
+import LockOrientationPanel from "./src/components/panels/LockOrientationPanel";
 import Row from "./src/components/Row";
 import Separator from "./src/components/Separator";
 
 import { StateProvider } from "./src/magic/hooks";
-
-const Panel2 = ({ setIsModalVisible }) => (
-  <Panel size="m" onLongPress={() => setIsModalVisible(true)}>
-    <Row>
-      <Icon name="hotspot" />
-    </Row>
-  </Panel>
-);
 
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,13 +44,13 @@ export default function App() {
             <Row>
               <DoNotDisturbPanel />
               <Separator width={15} />
-              <Panel2 />
+              <LockOrientationPanel />
             </Row>
-            <Row>
+            {/* <Row>
               <Panel2 />
               <Separator width={15} />
               <Panel2 />
-            </Row>
+            </Row> */}
           </View>
         </Row>
       </ImageBackground>

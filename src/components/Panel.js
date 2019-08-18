@@ -33,6 +33,7 @@ const Panel = props => {
       style={[
         styles.root,
         props.isSelected && styles.selected,
+        props.isFlexible && { aspectRatio: null },
         {
           transform: [{ scaleY: scale }, { scaleX: scale }]
         }

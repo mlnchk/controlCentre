@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { useStateValue } from "../magic/hooks";
 
 const iconSize = 54;
 
@@ -44,9 +45,11 @@ const iconsInitialState = Object.keys(icons).reduce(
 );
 
 const Icon = ({ name, ...rest }) => {
-  const [iconValues, setIconValues] = useState(iconsInitialState);
-  const changeIconState = slug => () =>
-    setIconValues({ ...iconValues, [slug]: !iconValues[slug] });
+  // const [iconValues, setIconValues] = useState(iconsInitialState);
+  const [iconValues, dispatch] = useStateValue();
+  // const changeIconState = slug => () =>
+  //   setIconValues({ ...iconValues, [slug]: !iconValues[slug] });
+  const changeIconState = slug => () => dispatch({ type: "toggleIcon", slug });
   const isIconActive = iconValues[name];
 
   return (

@@ -1,5 +1,10 @@
 import React from "react";
-import { StyleSheet, Image, TouchableWithoutFeedback } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback
+} from "react-native";
 import RNModal from "react-native-modal";
 
 import Panel from "./Panel";
@@ -8,7 +13,9 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingHorizontal: 27,
+    flexDirection: "row"
   }
 });
 
@@ -25,14 +32,11 @@ const Modal = ({ children, onBackdropPress, ...rest }) => (
     style={[styles.root]}
     customBackdrop={
       <TouchableWithoutFeedback onPress={onBackdropPress}>
-        <Image
-          source={require("../assets/background.png")}
-          // style={styles.container}
-        />
+        <Image source={require("../assets/background.png")} />
       </TouchableWithoutFeedback>
     }
   >
-    <Panel>{children}</Panel>
+    <Panel isFlexible>{children}</Panel>
   </RNModal>
 );
 

@@ -1,4 +1,10 @@
-import { useRef, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useRef
+} from "react";
 import { Animated } from "react-native";
 
 export const useAnimation = config => {
@@ -13,3 +19,12 @@ export const useAnimation = config => {
 
   return animatedValue;
 };
+
+export const StateContext = createContext();
+export const StateProvider = ({ reducer, initialState, children }) => (
+  <StateContext.Provider value={useReducer(reducer, initialState)}>
+    {children}
+  </StateContext.Provider>
+);
+
+export const useStateValue = () => useContext(StateContext);

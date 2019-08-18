@@ -8,16 +8,28 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     borderRadius: 18,
     // flex: 1,
-    aspectRatio: 1,
+    // aspectRatio: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
     // padding: 15,
     // flexDirection: "row",
     // justifyContent: "space-between",
     // flexWrap: "wrap"
     // remove it
+  },
+  selected: {
+    backgroundColor: "#ffffff"
+  },
+  m: {
     height: 153,
     width: 153
+  },
+  s: {
+    height: 69,
+    width: 69
+  },
+  flexible: {
+    flex: 1
   }
 });
 
@@ -32,19 +44,22 @@ const Panel = props => {
   return (
     <TouchableOpacity
       activeOpacity={1}
-      // pointerEvents="box-none"
       onPressIn={() => setIsScaled(true)}
       onPressOut={() => setIsScaled(false)}
-      // onPress={() => console.log("onPress")}
       {...props}
-      // onLongPress={() => console.log("onLongPress")}
       style={[
         styles.root,
+        props.isFlexible ? styles.flexible : styles[props.size],
+        props.isSelected && styles.selected,
         {
           transform: [{ scaleY: scale }, { scaleX: scale }]
         }
       ]}
-    />
+    >
+      {typeof props.children === "function"
+        ? props.children(props.isSelected)
+        : props.children}
+    </TouchableOpacity>
   );
 };
 

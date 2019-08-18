@@ -30,10 +30,7 @@ export default function App() {
                 <LockOrientationPanel />
               </Row>
               <Separator height={15} />
-              <Row flex={1}>
-                {/* TODO: remove flex */}
-                <ScreenMirroringPanel />
-              </Row>
+              <ScreenMirroringPanel />
             </View>
           </Row>
         </SafeAreaView>

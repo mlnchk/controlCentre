@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet } from "react-native";
 
 import Panel from "../Panel";
 import Modal from "../Modal";
@@ -8,22 +8,27 @@ import ListPanelView from "../ListPanelView";
 
 const listItems = [
   {
+    id: 0,
     title: "Looking for Apple TV...",
     onPress: () => {}
   },
   {
+    id: 1,
     title: "",
     onPress: () => {}
   },
   {
+    id: 2,
     title: "",
     onPress: () => {}
   },
   {
+    id: 3,
     title: "",
     onPress: () => {}
   },
   {
+    id: 4,
     title: "",
     onPress: () => {}
   }
@@ -33,11 +38,7 @@ const ScreenMirroringPanel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <>
-      <Panel
-        isFlexible
-        isSelected={false}
-        onLongPress={() => setIsModalVisible(true)}
-      >
+      <Panel isFlexible onLongPress={() => setIsModalVisible(true)}>
         <View flexDirection="row" alignItems="center" justifyContent="center">
           <Image source={require("../../assets/icons/screenMirroring.png")} />
           <Separator width={13} />

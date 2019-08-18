@@ -9,14 +9,17 @@ import ListPanelView from "../ListPanelView";
 
 const listItems = [
   {
+    id: 0,
     title: "For 1 hour",
     onPress: () => {}
   },
   {
+    id: 1,
     title: "Until this evening",
     onPress: () => {}
   },
   {
+    id: 2,
     title: "Until I leave this location",
     onPress: () => {}
   }

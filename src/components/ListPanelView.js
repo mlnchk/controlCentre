@@ -10,9 +10,9 @@ import {
 
 import Separator from "./Separator";
 
-const keyExtractor = ({ title }) => title;
+const keyExtractor = ({ id }) => String(id);
 
-const DoNotDisturbPanel = ({ icon, headerText, footerText, items }) => (
+const ListPanelView = ({ icon, headerText, footerText, items }) => (
   <>
     <View style={styles.header} alignItems="center">
       <Separator height={15} />
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DoNotDisturbPanel;
+export default ListPanelView;

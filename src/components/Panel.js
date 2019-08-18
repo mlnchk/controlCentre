@@ -20,7 +20,7 @@ const Panel = ({ isSelected, isFlexible, children, ...rest }) => {
       style={[
         styles.root,
         isSelected && styles.selected,
-        isFlexible && { aspectRatio: null },
+        isFlexible && styles.flexible,
         {
           transform: [{ scaleY: scale }, { scaleX: scale }]
         }
@@ -39,9 +39,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-evenly"
   },
-  selected: {
-    backgroundColor: "#ffffff"
-  }
+  flexible: { aspectRatio: null },
+  selected: { backgroundColor: "#ffffff" }
 });
 
 export default Panel;

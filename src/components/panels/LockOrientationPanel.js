@@ -16,7 +16,7 @@ const LockOrientationPanel = () => {
       onLongPress={changeIconState("lockOrientation")}
     >
       {isSelected => (
-        <View alignItems="center" justufyContent="center">
+        <View alignItems="center" justifyContent="center">
           {isSelected ? (
             <Image
               source={require("../../assets/icons/lockOrientationActive.png")}

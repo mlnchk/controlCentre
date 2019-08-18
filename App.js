@@ -7,6 +7,7 @@ import Icon from "./src/components/Icon";
 import ConnectionsPanel from "./src/components/panels/ConnectionsPanel";
 import DoNotDisturbPanel from "./src/components/panels/DoNotDisturbPanel";
 import LockOrientationPanel from "./src/components/panels/LockOrientationPanel";
+import ScreenMirroringPanel from "./src/components/panels/ScreenMirroringPanel";
 import Row from "./src/components/Row";
 import Separator from "./src/components/Separator";
 
@@ -46,11 +47,11 @@ export default function App() {
               <Separator width={15} />
               <LockOrientationPanel />
             </Row>
-            {/* <Row>
-              <Panel2 />
-              <Separator width={15} />
-              <Panel2 />
-            </Row> */}
+            <Separator height={15} />
+            <Row flex={1}>
+              {/* TODO: remove flex */}
+              <ScreenMirroringPanel />
+            </Row>
           </View>
         </Row>
       </ImageBackground>

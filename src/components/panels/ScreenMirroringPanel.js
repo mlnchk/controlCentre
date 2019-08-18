@@ -1,35 +1,24 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 import Panel from "../Panel";
 import Modal from "../Modal";
-
-import { useStateValue } from "../../magic/hooks";
 import Separator from "../Separator";
 
-const DoNotDisturbPanel = () => {
+const ScreenMirroringPanel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [iconValues, dispatch] = useStateValue();
-  const changeIconState = slug => () => dispatch({ type: "toggleIcon", slug });
-  const isIconActive = iconValues["doNotDisturb"];
   return (
     <>
       <Panel
-        onPress={changeIconState("doNotDisturb")}
-        isSelected={isIconActive}
+        isFlexible
+        isSelected={false}
         onLongPress={() => setIsModalVisible(true)}
       >
-        {isSelected => (
-          <View alignItems="center" justifyContent="center">
-            {isSelected ? (
-              <Image
-                source={require("../../assets/icons/doNotDisturbActive.png")}
-              />
-            ) : (
-              <Image source={require("../../assets/icons/doNotDisturb.png")} />
-            )}
-          </View>
-        )}
+        <View flexDirection="row" alignItems="center" justifyContent="center">
+          <Image source={require("../../assets/icons/screenMirroring.png")} />
+          <Separator width={13} />
+          <Text style={styles.text}>Screen{"\n"}Mirroring</Text>
+        </View>
       </Panel>
       <Modal
         isVisible={isModalVisible}
@@ -37,24 +26,30 @@ const DoNotDisturbPanel = () => {
       >
         <View style={styles.header} alignItems="center">
           <Separator height={15} />
-          <Image source={require("../../assets/icons/doNotDisturb.png")} />
+          <Image source={require("../../assets/icons/screenMirroring.png")} />
           <Separator height={10} />
 
-          <Text style={styles.text}>Do Not Disturb</Text>
+          <Text style={styles.text}>Screen Mirroring</Text>
           <Separator height={15} />
         </View>
         <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>For 1 hour</Text>
+          <Text style={styles.text}>Looking for Apple TV...</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>Until this evening</Text>
+          <Text style={styles.text} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {}} style={styles.listItem}>
-          <Text style={styles.text}>Until i leave this location</Text>
+          <Text style={styles.text} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
+          <Text style={styles.text} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}} style={styles.listItem}>
+          <Text style={styles.text} />
         </TouchableOpacity>
         <View alignItems="center">
           <Separator height={15} />
-          <Text style={styles.text}>Schedule</Text>
+          <Text style={styles.text} />
           <Separator height={15} />
         </View>
       </Modal>
@@ -79,4 +74,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DoNotDisturbPanel;
+export default ScreenMirroringPanel;

@@ -3,12 +3,20 @@ import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
 
 import Panel from "./src/components/Panel";
 import Icon from "./src/components/Icon";
-import Modal from "./src/components/Modal";
+
+import ConnectionsPanel from "./src/components/panels/ConnectionsPanel";
+import DoNotDisturbPanel from "./src/components/panels/DoNotDisturbPanel";
+import Row from "./src/components/Row";
+import Separator from "./src/components/Separator";
 
 import { StateProvider } from "./src/magic/hooks";
 
-const Separator = ({ width = 0, height = 0 }) => (
-  <View style={{ width, height }} />
+const Panel2 = ({ setIsModalVisible }) => (
+  <Panel size="m" onLongPress={() => setIsModalVisible(true)}>
+    <Row>
+      <Icon name="hotspot" />
+    </Row>
+  </Panel>
 );
 
 export default function App() {
@@ -36,35 +44,22 @@ export default function App() {
         source={require("./src/assets/background.png")}
         style={styles.container}
       >
-        <View style={styles.row}>
-          <Panel size="m" onLongPress={() => setIsModalVisible(true)}>
-            <View style={styles.row}>
-              <View flexGrow={0.5} alignItems="center">
-                <Icon name="airplane" />
-              </View>
-              <View flexGrow={0.5} alignItems="center">
-                <Icon name="cellular" />
-              </View>
-            </View>
-          </Panel>
-        </View>
-        <Modal
-          isVisible={isModalVisible}
-          onBackdropPress={() => setIsModalVisible(false)}
-        >
+        <Row>
+          <ConnectionsPanel />
           <Separator width={15} />
-          <View style={styles.row}>
-            <Icon name="airplane" />
-            <Separator width={15} />
-            <Icon name="cellular" />
+          <View flex={1} justifyContent="space-between">
+            <Row>
+              <DoNotDisturbPanel />
+              <Separator width={15} />
+              <Panel2 />
+            </Row>
+            <Row>
+              <Panel2 />
+              <Separator width={15} />
+              <Panel2 />
+            </Row>
           </View>
-          <Separator height={15} />
-          <View style={styles.row}>
-            <Icon name="wifi" />
-            <Separator width={15} />
-            <Icon name="bluetooth" />
-          </View>
-        </Modal>
+        </Row>
       </ImageBackground>
     </StateProvider>
   );

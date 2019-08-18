@@ -7,29 +7,12 @@ const styles = StyleSheet.create({
   root: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     borderRadius: 18,
-    // flex: 1,
-    // aspectRatio: 1,
-    alignItems: "center",
-    justifyContent: "center"
-    // padding: 15,
-    // flexDirection: "row",
-    // justifyContent: "space-between",
-    // flexWrap: "wrap"
-    // remove it
+    flex: 1,
+    aspectRatio: 1,
+    justifyContent: "space-evenly"
   },
   selected: {
     backgroundColor: "#ffffff"
-  },
-  m: {
-    height: 153,
-    width: 153
-  },
-  s: {
-    height: 69,
-    width: 69
-  },
-  flexible: {
-    flex: 1
   }
 });
 
@@ -49,7 +32,6 @@ const Panel = props => {
       {...props}
       style={[
         styles.root,
-        props.isFlexible ? styles.flexible : styles[props.size],
         props.isSelected && styles.selected,
         {
           transform: [{ scaleY: scale }, { scaleX: scale }]

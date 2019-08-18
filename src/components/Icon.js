@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import { useStateValue } from "../magic/hooks";
 
 const iconSize = 54;
@@ -12,57 +12,79 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: iconSize / 2,
     backgroundColor: "rgba(255, 255, 255, 0.4)"
+  },
+  title: {
+    marginTop: 8,
+    textAlign: "center",
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "white"
+  },
+  subTitle: {
+    marginTop: 2,
+    textAlign: "center",
+    fontSize: 12,
+    color: "white"
   }
 });
 
 const icons = {
   airdrop: {
+    title: "AirDrop",
     activeColor: "#007AFF",
     icon: require("../assets/icons/airdrop.png")
   },
   airplane: {
+    title: "Airplane Mode",
     activeColor: "#F19938",
     icon: require("../assets/icons/airplane.png")
   },
   bluetooth: {
+    title: "Bluetooth",
     activeColor: "#007AFF",
     icon: require("../assets/icons/bluetooth.png")
   },
   cellular: {
+    title: "Mobile Data",
     activeColor: "#4CD964",
     icon: require("../assets/icons/cellular.png")
   },
   hotspot: {
+    title: "Personal Hotspot",
     activeColor: "#4CD964",
     icon: require("../assets/icons/hotspot.png")
   },
-  wifi: { activeColor: "#007AFF", icon: require("../assets/icons/wifi.png") }
+  wifi: {
+    title: "WiFi",
+    activeColor: "#007AFF",
+    icon: require("../assets/icons/wifi.png")
+  }
 };
 
-const iconsInitialState = Object.keys(icons).reduce(
-  (acc, value) => ({ ...acc, [value]: false }),
-  {}
-);
-
-const Icon = ({ name, ...rest }) => {
-  // const [iconValues, setIconValues] = useState(iconsInitialState);
+const Icon = ({ name, withTitle, ...rest }) => {
   const [iconValues, dispatch] = useStateValue();
-  // const changeIconState = slug => () =>
-  //   setIconValues({ ...iconValues, [slug]: !iconValues[slug] });
   const changeIconState = slug => () => dispatch({ type: "toggleIcon", slug });
   const isIconActive = iconValues[name];
 
   return (
-    <TouchableOpacity
-      {...rest}
-      onPress={changeIconState(name)}
-      style={[
-        styles.root,
-        isIconActive && { backgroundColor: icons[name].activeColor }
-      ]}
-    >
-      <Image source={icons[name].icon} />
-    </TouchableOpacity>
+    <View alignItems="center" flex={1}>
+      <TouchableOpacity
+        {...rest}
+        onPress={changeIconState(name)}
+        style={[
+          styles.root,
+          isIconActive && { backgroundColor: icons[name].activeColor }
+        ]}
+      >
+        <Image source={icons[name].icon} />
+      </TouchableOpacity>
+      {withTitle && (
+        <>
+          <Text style={styles.title}>{icons[name].title}</Text>
+          <Text style={styles.subTitle}>{isIconActive ? "On" : "Off"}</Text>
+        </>
+      )}
+    </View>
   );
 };
 
